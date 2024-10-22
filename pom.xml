@@ -113,12 +113,6 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-
-		<dependency>
-    		<groupId>org.hibernate</groupId>
-   			<artifactId>hibernate-jpamodelgen</artifactId>
-    		<version>5.4.30.Final</version> <!-- Ajuste para sua versão do Hibernate -->
-		</dependency>
 	</dependencies>
 	
 	<build>
@@ -127,6 +121,19 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-clean-plugin</artifactId>
+            	<version>3.1.0</version>
+            	<executions>
+                	<execution>
+                    	<phase>clean</phase>
+                    	<goals>
+                        	<goal>clean</goal>
+                    	</goals>
+                	</execution>
+            	</executions>
+        	</plugin>
 			<plugin>
       			<groupId>org.bsc.maven</groupId>
       			<artifactId>maven-processor-plugin</artifactId>
