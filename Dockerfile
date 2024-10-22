@@ -8,7 +8,7 @@ RUN apt-get install maven -y
 RUN mvn clean install 
 
 FROM openjdk:17-jdk-slim
-COPY --from=build /target/demo-0.0.1-SNAPSHOT.jar demo.jar
+COPY --from=build /target/algamoney-api-0.0.1-SNAPSHOT.jar demo.jar
 ENV PORT=8080
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "demo.jar"]
