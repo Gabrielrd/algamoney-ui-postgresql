@@ -119,9 +119,9 @@
 		<plugins>
 			<plugin>
     			<groupId>org.bsc.maven</groupId>            
-    				<artifactId>maven-processor-plugin</artifactId>
-    				<version>4.5</version>
-   					<executions>            
+    			<artifactId>maven-processor-plugin</artifactId>
+    			<version>4.5</version>
+   				<executions>            
         				<execution>         
           					<id>process</id>          
              				<goals>           
@@ -133,12 +133,12 @@
                 					<outputDirectory>target/metamodel</outputDirectory>         
               				</configuration>          
            				</execution>            
-        			</executions>           
+        		</executions>           
 			</plugin>           
 			<plugin>            
     			<groupId>org.codehaus.mojo</groupId>            
-    				<artifactId>build-helper-maven-plugin</artifactId>  
-    				<executions>            
+    			<artifactId>build-helper-maven-plugin</artifactId>  
+    			<executions>            
       					<execution>           
         					<id>add-source</id>         
         					<phase>generate-sources</phase>         
@@ -151,7 +151,7 @@
           						</sources>            
         					</configuration>
     					</execution>            
-  					</executions>         
+  				</executions>         
 			</plugin>
 	    </plugins>
 	</build>
