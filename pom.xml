@@ -113,6 +113,12 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
+
+		<dependency>
+    		<groupId>org.hibernate</groupId>
+   			<artifactId>hibernate-jpamodelgen</artifactId>
+    		<version>5.4.30.Final</version> <!-- Ajuste para sua versão do Hibernate -->
+		</dependency>
 	</dependencies>
 	
 	<build>
