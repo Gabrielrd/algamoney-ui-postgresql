@@ -29,7 +29,7 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 	private EntityManager manager;
 	
 	@Override
-	public Page filtrar(LancamentoFilter lancamentoFilter, Pageable pageable) {
+	public Page<Lancamento> filtrar(LancamentoFilter lancamentoFilter, Pageable pageable) {
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
 		CriteriaQuery<Lancamento> criteria = builder.createQuery(Lancamento.class);
 		Root<Lancamento> root = criteria.from(Lancamento.class);
