@@ -73,7 +73,7 @@
     		<groupId>org.hibernate</groupId>
     		<artifactId>hibernate-jpamodelgen</artifactId>
     		<scope>provided</scope>
-		</dependency>
+		</dependency> 
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -118,41 +118,42 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+    			<groupId>org.bsc.maven</groupId>            
+    				<artifactId>maven-processor-plugin</artifactId>
+    				<version>4.5</version>
+   					<executions>            
+        				<execution>         
+          					<id>process</id>          
+             				<goals>           
+                				<goal>process</goal>            
+              				</goals>          
+              				<phase>generate-sources</phase>           
+              				<configuration>           
+                				<!-- source output directory -->            
+                					<outputDirectory>target/metamodel</outputDirectory>         
+              				</configuration>          
+           				</execution>            
+        			</executions>           
+			</plugin>           
+			<plugin>            
+    			<groupId>org.codehaus.mojo</groupId>            
+    				<artifactId>build-helper-maven-plugin</artifactId>  
+    				<executions>            
+      					<execution>           
+        					<id>add-source</id>         
+        					<phase>generate-sources</phase>         
+       						<goals>         
+          						<goal>add-source</goal>           
+        					</goals>            
+        					<configuration>         
+          						<sources>         
+            						<source>target/metamodel</source>           
+          						</sources>            
+        					</configuration>
+    					</execution>            
+  					</executions>         
 			</plugin>
-			<plugin>
-            	<groupId>org.apache.maven.plugins</groupId>
-            	<artifactId>maven-clean-plugin</artifactId>
-            	<version>3.1.0</version>
-            	<executions>
-                	<execution>
-                    	<phase>clean</phase>
-                    	<goals>
-                        	<goal>clean</goal>
-                    	</goals>
-                	</execution>
-            	</executions>
-        	</plugin>
-			<plugin>
-      			<groupId>org.bsc.maven</groupId>
-      			<artifactId>maven-processor-plugin</artifactId>
-      			<version>3.3.3</version>
-      			<executions>
-        			<execution>
-          				<id>process</id>
-          				<goals>
-           				 	<goal>process</goal>
-          				</goals>
-        			</execution>
-      			</executions>
-      			<configuration>
-        			<processors>
-          				<processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
-        			</processors>
-      			</configuration>
-    		</plugin>
-		</plugins>
+	    </plugins>
 	</build>
 	
 </project>
