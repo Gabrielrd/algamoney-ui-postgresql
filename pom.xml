@@ -186,7 +186,7 @@
                 <archive>
                     <manifest>
                         <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                        <mainClass>com.example.algamoneyapi.AlgamoneyApiApplication</mainClass> <!-- Substitua pela sua classe principal -->
+                        <mainClass>AlgamoneyApiApplication</mainClass> <!-- Substitua pela sua classe principal -->
                     </manifest>
                 </archive>
             </configuration>
