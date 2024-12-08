@@ -1,26 +1,14 @@
-# Etapa 1: Build do projeto
-FROM maven:3.8.8-eclipse-temurin-17 as build
+FROM ubuntu:latest AS build
 
-# Define o diretório de trabalho
-WORKDIR /app
-
-# Copia os arquivos do projeto para o container
+RUN apt-get update
+RUN apt-get install openjdk-17-jdk -y
 COPY . .
 
-# Compila e empacota a aplicação
-RUN mvn clean package -DskipTests
+RUN apt-get install maven -y
+RUN mvn clean install -U
 
-# Etapa 2: Construção da imagem final
 FROM openjdk:17-jdk-slim
-
-# Define o diretório de trabalho no container final
-WORKDIR /app
-
-# Copia o JAR gerado na etapa anterior para a imagem final
-COPY --from=build /app/target/*.jar app.jar
-
-# Expõe a porta padrão do Spring Boot
+COPY --from=build /target/algamoney-api-0.0.1-SNAPSHOT.jar demo.jar
+ENV PORT=8080
 EXPOSE 8080
-
-# Comando para executar a aplicação
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "demo.jar"]
