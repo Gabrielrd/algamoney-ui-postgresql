@@ -1,14 +1,14 @@
-FROM ubuntu:latest AS build
-
-RUN apt-get update
-RUN apt-get install openjdk-17-jdk -y
-COPY . .
-
-RUN apt-get install maven -y
-RUN mvn clean install -U
-
+# Escolha a imagem base com Java 17 (ou a versão que sua aplicação requer)
 FROM openjdk:17-jdk-slim
-COPY --from=build /target/algamoney-api-0.0.1-SNAPSHOT.jar demo.jar
-ENV PORT=8080
+
+# Define o diretório de trabalho dentro do container
+WORKDIR /app
+
+# Copia o arquivo JAR gerado pelo build para dentro do container
+COPY target/algamoneyapi-0.0.1-SNAPSHOT.jar app.jar
+
+# Expõe a porta que a aplicação Spring Boot utiliza (por padrão, 8080)
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "demo.jar"]
+
+# Comando para executar o JAR
+ENTRYPOINT ["java", "-jar", "app.jar"]
