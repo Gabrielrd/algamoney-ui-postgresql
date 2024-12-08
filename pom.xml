@@ -12,7 +12,7 @@
 	<artifactId>algamoney-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>algamoney-api</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo project for Spring Boot final</description>
 	<properties>
 		<start-class>com.example.algamoneyapi.AlgamoneyApiApplication</start-class>
 		<java.version>11</java.version>
