@@ -1,14 +1,22 @@
-FROM ubuntu:latest AS build
+# Importing JDK and copying required files
+FROM openjdk:19-jdk AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src src
 
-RUN apt-get update
-RUN apt-get install openjdk-17-jdk -y
-COPY . .
+# Copy Maven wrapper
+COPY mvnw .
+COPY .mvn .mvn
 
-RUN apt-get install maven -y
-RUN mvn clean install -U
+# Set execution permission for the Maven wrapper
+RUN chmod +x ./mvnw
+RUN ./mvnw clean package -DskipTests
 
-FROM openjdk:17-jdk-slim
-COPY --from=build /target/algamoney-api-0.0.1-SNAPSHOT.jar demo.jar
-ENV PORT=8080
+# Stage 2: Create the final Docker image using OpenJDK 19
+FROM openjdk:19-jdk
+VOLUME /tmp
+
+# Copy the JAR from the build stage
+COPY --from=build /app/target/*.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "demo.jar"]
