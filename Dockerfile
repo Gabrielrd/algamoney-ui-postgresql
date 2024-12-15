@@ -4,7 +4,7 @@ FROM maven:3.8.8-eclipse-temurin-11 AS builder
 # Define o diretório de trabalho
 WORKDIR /app
 
-# Copia os arquivos do projeto para o container
+# Copia os arquivos do projeto para o container teste
 COPY . .
 
 # Compila o projeto e gera o JAR (sem testes para acelerar o build)
