@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Compila o projeto e gera o JAR (sem testes para acelerar o build)
-RUN ./mvnw clean package -DskipTests
+RUN ./mvnw clean package
 
 # Etapa 2: Imagem final com OpenJDK 11 para executar a aplicação
 FROM openjdk:11-jre-slim
