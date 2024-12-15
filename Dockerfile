@@ -4,11 +4,11 @@ FROM maven:3.8.8-eclipse-temurin-11 AS builder
 # Define o diretório de trabalho
 WORKDIR /app
 
-# Copia os arquivos do projeto para o container teste
+# Copia os arquivos do projeto para o container
 COPY . .
 
 # Compila o projeto e gera o JAR (sem testes para acelerar o build)
-RUN ./mvnw clean package
+RUN mvn clean package -DskipTests -Dmaven.repo.local=/app/.m2
 
 # Etapa 2: Imagem final com OpenJDK 11 para executar a aplicação
 FROM openjdk:11-jre-slim
